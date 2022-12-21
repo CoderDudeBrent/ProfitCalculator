@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel=”stylesheet” href=”{% static "CSS/styles.css" %}”>
+    <title>Profit Calculator By CoderDudeBrent</title>
+</head>
+
+<body>
+    <h1>Profit Calculator</h1><br>
+
+    <form action="http://127.0.0.1:8000/fixedcost">
+        <input type="submit" value="Figure out your fixed cost!">
+    </form><br>
+    <form action="http://127.0.0.1:8000/variablecost">
+        <input type="submit" value="Figure out your variable cost!">
+    </form><br>
+    <form action="http://127.0.0.1:8000/profit">
+        <input type="submit" value="Figure out your profit!">
+    </form><br>
+
+</body>
+
+<footer> Application created by CoderDudeBrent!</footer>
+
+
+</html>
