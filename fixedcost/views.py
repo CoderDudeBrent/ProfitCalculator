@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def fixedcost(request):
@@ -14,10 +15,15 @@ def calculate_cost(request):
         permits = request.POST.get('permits')
         total_miles_driven = request.POST.get('total_miles_driven')
 
-        # Calculate the total cost and cost per mile
-        total_cost = int(vehicle_payment) + int(insurance_cost) + \
-            int(license_plates) + int(permits)
-        cost_per_mile = total_cost / int(total_miles_driven)
+        if vehicle_payment == '' or insurance_cost == '' or license_plates == '' or permits == '' or total_miles_driven == '':
+            error_message = "Please fill in all fields"
+            return render(request, 'fixedcost.html', {'error_message': error_message})
+
+        else:
+            # Calculate the total cost and cost per mile
+            total_cost = int(vehicle_payment) + int(insurance_cost) + \
+                int(license_plates) + int(permits)
+            cost_per_mile = total_cost / int(total_miles_driven)
 
         # Pass the results to the template
         context = {

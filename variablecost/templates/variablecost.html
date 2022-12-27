@@ -1,3 +1,6 @@
+{% extends 'main.html' %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,36 +12,45 @@
 </head>
 
 <body>
-    <h1>Variable Cost Calculator</h1>
+    <div class="header-bar">
+        <h1>Variable Cost Calculator</h1>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'calculate_v_cost' %}" method="post">
+            {% csrf_token %}
 
-    <form action="{% url 'calculate_v_cost' %}" method="post">
-        {% csrf_token %}
+            <label>Monthly/weekly Fuel Expenses:</label><br>
+            <input type="number" placeholder="Ex: 250" name="fuel_expense"><br>
 
-        <label>Monthly/weekly Fuel Expenses:</label><br>
-        <input type="number" placeholder="Ex: 250" name="fuel_expense"><br>
+            <label>Monthly/weekly Maintenence Expenses:</label><br>
+            <input type="number" placeholder="Ex: 50" name="maint_expense"><br>
 
-        <label>Monthly/weekly Maintenence Expenses:</label><br>
-        <input type="number" placeholder="Ex: 50" name="maint_expense"><br>
+            <label>Monthly/weekly Repair Expenses:</label><br>
+            <input type="number" placeholder="Ex: 175" name="repair_expense"><br>
 
-        <label>Monthly/weekly Repair Expenses:</label><br>
-        <input type="number" placeholder="Ex: 175" name="repair_expense"><br>
+            <label>Monthly/weekly Other Expense Expenses:</label><br>
+            <input type="number" placeholder="Ex: 100" name="other_expense"><br><br>
 
-        <label>Monthly/weekly Other Expense Expenses:</label><br>
-        <input type="number" placeholder="Ex: 100" name="other_expense"><br><br>
+            <label>Total miles you drove this week/month.</label><br>
+            <input type="number" placeholder="Ex: 400" name="total_miles_driven"><br><br>
 
-        <label>Total miles you drove this week/month.</label><br>
-        <input type="number" placeholder="Ex: 400" name="total_miles_driven"><br><br>
+            <input type="submit" value="Calculate"><br><br>
+    </div>
 
-        <input type="submit" value="Calculate"><br><br><br>
+    <div class="error">
+        {{ error_message }}
+    </div>
 
+    <div class="results">
         <!-- Display the total cost -->
         <p>Total cost: {{ total_cost }}</p>
 
         <!-- Display the cost per mile -->
         <p>Cost per mile: {{ cost_per_mile }}</p><br><br>
+    </div>
 
     </form>
-    <form action="http://127.0.0.1:8000/home/">
+    <form action="http://127.0.0.1:8000/">
         <input type="submit" value="Back home" />
     </form><br>
 
@@ -50,3 +62,4 @@
 </footer>
 
 </html>
+{% endblock content %}

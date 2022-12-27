@@ -15,6 +15,10 @@ def calculate_profit(request):
 
         average_fuel_cost = 3.10
 
+        if miles_driven == '' or average_mpg == '' or payment == '':
+            error_message = "Please fill every entry."
+            return render(request, 'profit.html', {'error_message': error_message})
+
         # Calculate the profit
         profit = float(payment) - (float(miles_driven) /
                                    float(average_mpg)) * float(average_fuel_cost)

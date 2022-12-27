@@ -1,3 +1,6 @@
+{% extends 'main.html' %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,17 +14,24 @@
 </head>
 
 <body>
-    <h1>Profit Calculator</h1><br>
+    <div class="header-bar">
+        <h1>Profit Calculator</h1><br>
+    </div>
 
-    <form action="http://127.0.0.1:8000/fixedcost">
-        <input type="submit" value="Figure out your fixed cost!">
-    </form><br>
-    <form action="http://127.0.0.1:8000/variablecost">
-        <input type="submit" value="Figure out your variable cost!">
-    </form><br>
-    <form action="http://127.0.0.1:8000/profit">
-        <input type="submit" value="Figure out your profit!">
-    </form><br>
+    <hr>
+
+    <div class="card-body">
+        <form action="http://127.0.0.1:8000/fixedcost">
+            <input type="submit" value="Figure out your fixed cost!">
+        </form><br>
+        <form action="http://127.0.0.1:8000/variablecost">
+            <input type="submit" value="Figure out your variable cost!">
+        </form><br>
+        <form action="http://127.0.0.1:8000/profit">
+            <input type="submit" value="Figure out your profit!">
+        </form><br>
+    </div>
+
 
 </body>
 
@@ -29,3 +39,5 @@
 
 
 </html>
+
+{% endblock content %}

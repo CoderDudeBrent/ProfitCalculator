@@ -16,16 +16,21 @@ def calculate_v_cost(request):
 
         # calculate total cost and cost per mile
 
-        total_cost = int(fuel_expense) + int(maint_expense) + \
-            int(repair_expense) + int(other_expense)
+        if fuel_expense == '' or repair_expense == '' or other_expense == '' or total_miles_driven == '':
+            error_message = "Please fill in all fields."
+            return render(request, 'variablecost.html', {'error_message': error_message})
 
-        cost_per_mile = total_cost / int(total_miles_driven)
+        else:
+            total_cost = int(fuel_expense) + int(maint_expense) + \
+                int(repair_expense) + int(other_expense)
 
-        # pass to template
+            cost_per_mile = total_cost / int(total_miles_driven)
 
-        context = {
-            'total_cost': total_cost,
-            'cost_per_mile': cost_per_mile,
-        }
+            # pass to template
+
+            context = {
+                'total_cost': total_cost,
+                'cost_per_mile': cost_per_mile,
+            }
 
     return render(request, 'variablecost.html', context)

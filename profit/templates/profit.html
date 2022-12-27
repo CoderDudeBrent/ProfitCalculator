@@ -1,3 +1,6 @@
+{% extends 'main.html' %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,32 +12,43 @@
 </head>
 
 <body>
-    <h1>Total Profit Calculator</h1>
+    <div class="header-bar">
+        <h1>Total Profit Calculator</h1>
+    </div>
 
     <!--This code simply puts labels and boxes with placeholders in it for the user-->
+    <div class="card-body">
+        <form action="{% url 'calculate_profit' %}" method="post">
+            {% csrf_token %}
 
-    <form action="{% url 'calculate_profit' %}" method="post">
-        {% csrf_token %}
+            <h3>The average fuel price is $3.10</h3>
 
-        <label>Monthly/weekly Miles Driven:</label><br>
-        <input type="number" placeholder="Ex: 300" name="miles_driven"><br>
+            <label>Monthly/weekly Miles Driven:</label><br>
+            <input type="number" placeholder="Ex: 300" name="miles_driven"><br>
 
-        <label>Monthly/weekly Average MPG:</label><br>
-        <input type="number" placeholder="Ex: 30" name="average_mpg"><br>
+            <label>Monthly/weekly Average MPG:</label><br>
+            <input type="number" placeholder="Ex: 30" name="average_mpg"><br>
 
-        <label>Monthly/weekly Pay:</label><br>
-        <input type="number" placeholder="Ex: 500" name="payment"><br><br>
+            <label>Monthly/weekly Pay:</label><br>
+            <input type="number" placeholder="Ex: 500" name="payment"><br><br>
 
-        <input type="submit" value="Calculate"><br><br><br>
+            <input type="submit" value="Calculate"><br><br><br>
 
-        <!-- Display the cost per mile -->
-        <p>Total Profit: {{ profit }}</p><br><br>
+            <p class="error">{{ error_message }}</p>
 
-    </form>
-    <!--Takes the user back to the homepage-->
-    <form action="http://127.0.0.1:8000/home/">
-        <input type="submit" value="Back home" />
-    </form><br>
+            <div class="results">
+                <!-- Display the cost per mile -->
+                <p>Total Profit: {{ profit }}</p><br><br>
+            </div>
+
+
+
+        </form>
+        <!--Takes the user back to the homepage-->
+        <form action="http://127.0.0.1:8000">
+            <input type="submit" value="Back home" />
+        </form><br>
+    </div>
 
     </form>
 </body>
@@ -44,3 +58,5 @@
 </footer>
 
 </html>
+
+{% endblock content %}
